@@ -1,0 +1,14 @@
+#!/bin/bash
+# Quick installer/wrapper for flatter.py on macOS
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# Create a symlink in /usr/local/bin if requested
+if [ "$1" = "install" ]; then
+    sudo ln -sf "$SCRIPT_DIR/flatter.py" /usr/local/bin/flatter
+    echo "✅ Installed! You can now run: flatter <source> <output>"
+    exit 0
+fi
+
+# Otherwise, run the Python script with all arguments
+python3 "$SCRIPT_DIR/flatter.py" "$@"
